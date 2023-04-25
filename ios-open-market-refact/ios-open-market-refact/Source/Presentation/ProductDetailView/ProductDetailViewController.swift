@@ -9,7 +9,7 @@ import UIKit
 
 final class ProductDetailViewController: SuperViewControllerSetting {
     
-    weak var coordinator: Coordinator?
+    weak var coordinator: ProductDetailCoordinator?
 
     //MARK: ProductDetailViewController NameSpace
 
@@ -31,6 +31,12 @@ final class ProductDetailViewController: SuperViewControllerSetting {
     private var deleteButtonAction = Observable(ProductDetailViewModel.ButtonAction.defaultAction)
     private var editButtonAction = Observable(ProductDetailViewModel.ButtonAction.defaultAction)
     
+    //MARK: - View Life Cycle
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        coordinator?.didFinishDetailView()
+    }
     //MARK: - Setup ViewController method
     
     override func setupDefault() {
@@ -144,6 +150,7 @@ final class ProductDetailViewController: SuperViewControllerSetting {
         AlertDirector(viewController: self).createProductDeleteSuccessAlert(
             message: ProductDetailViewControllerNameSpace.deleteCompletionMessage
         ) { [weak self] _ in
+            //TODO: Coordinator
             self?.navigationController?.popViewController(animated: true)
         }
     }

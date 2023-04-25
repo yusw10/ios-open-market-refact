@@ -17,13 +17,13 @@ class ProductListCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-    func start(){
-        let vc = ProductRegistViewController()
+    func start() {
+        let vc = ProductListViewController()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func didFinishBuying(){
+    func didFinishListView() {
         parentCoordinator?.childDidFinish(self)
     }
 }

@@ -30,4 +30,18 @@ class MainCoordinator: Coordinator {
             }
         }
     }
+    
+    func detailSubscription() {
+        let child = ProductDetailCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func listSubscription() {
+        let child = ProductListCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 final class ProductRegistViewController: SuperViewControllerSetting {
     
-    weak var coordinator: Coordinator?
+    weak var coordinator: ProductRegistCoordinator?
     
     //MARK: ProductRegistViewController NameSpace
     
@@ -98,6 +98,7 @@ final class ProductRegistViewController: SuperViewControllerSetting {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        coordinator?.didFinishRegistView()
         NotificationCenter.default.removeObserver(
             self,
             name: UIResponder.keyboardWillShowNotification,
@@ -310,6 +311,7 @@ final class ProductRegistViewController: SuperViewControllerSetting {
             if isAction {
                 DispatchQueue.main.async {
                     self.refreshList?()
+                    //TODO: Coordinator
                     self.navigationController?.popViewController(animated: true)
                     
                     switch self.viewMode {

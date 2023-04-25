@@ -9,7 +9,7 @@ import UIKit
 
 final class MainViewController: SuperViewControllerSetting {
     
-    weak var coordinator: Coordinator?
+    weak var coordinator: MainCoordinator?
 
     //MARK: MainViewController Namespace
     
@@ -150,7 +150,8 @@ extension MainViewController: MoreButtonTapDelegate {
     
     func moreButtonAddGesture() {
         //TODO: Coordinating
-        navigationController?.pushViewController(ProductListViewController(), animated: true)
+        //navigationController?.pushViewController(ProductListViewController(), animated: true)
+        coordinator?.listSubscription()
     }
 }
 
@@ -165,7 +166,8 @@ extension MainViewController: UICollectionViewDelegate {
         
         productDetailViewController.receiveProductNumber(productNumber: productId)
         //TODO: Coordinating
-        navigationController?.pushViewController(productDetailViewController, animated: true)
+        //navigationController?.pushViewController(productDetailViewController, animated: true)
+        coordinator?.detailSubscription()
     }
 }
 

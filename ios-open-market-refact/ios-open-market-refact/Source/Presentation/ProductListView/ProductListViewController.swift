@@ -9,7 +9,7 @@ import UIKit
 
 final class ProductListViewController: SuperViewControllerSetting {
     
-    weak var coordinator: Coordinator?
+    weak var coordinator: ProductListCoordinator?
     
     //MARK: ProductListView NameSpace
     
@@ -87,6 +87,10 @@ final class ProductListViewController: SuperViewControllerSetting {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        coordinator?.didFinishListView()
     }
     
     //MARK: - View Default Setup Method
@@ -290,8 +294,8 @@ extension ProductListViewController: UICollectionViewDelegate {
         
         self.selectedIndexPath = indexPath
         productDetailViewController.receiveProductNumber(productNumber: productId)
+        
         //TODO: Coordinating
-
         navigationController?.pushViewController(productDetailViewController, animated: true)
     }
     

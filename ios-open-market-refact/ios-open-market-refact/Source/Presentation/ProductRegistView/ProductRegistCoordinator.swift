@@ -23,7 +23,7 @@ class ProductRegistCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func didFinishBuying(){
+    func didFinishRegistView(){
         parentCoordinator?.childDidFinish(self)
     }
 }
