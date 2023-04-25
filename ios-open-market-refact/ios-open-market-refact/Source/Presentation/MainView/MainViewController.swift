@@ -9,6 +9,8 @@ import UIKit
 
 final class MainViewController: SuperViewControllerSetting {
     
+    weak var coordinator: Coordinator?
+
     //MARK: MainViewController Namespace
     
     private enum MainViewControllerNameSpace {
@@ -147,6 +149,7 @@ extension MainViewController {
 extension MainViewController: MoreButtonTapDelegate {
     
     func moreButtonAddGesture() {
+        //TODO: Coordinating
         navigationController?.pushViewController(ProductListViewController(), animated: true)
     }
 }
@@ -161,6 +164,7 @@ extension MainViewController: UICollectionViewDelegate {
         guard let productId = dataSource?.itemIdentifier(for: indexPath)?.id else { return }
         
         productDetailViewController.receiveProductNumber(productNumber: productId)
+        //TODO: Coordinating
         navigationController?.pushViewController(productDetailViewController, animated: true)
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 final class ProductListViewController: SuperViewControllerSetting {
     
+    weak var coordinator: Coordinator?
+    
     //MARK: ProductListView NameSpace
     
     private enum ProductListViewControllerNameSpace {
@@ -148,6 +150,7 @@ final class ProductListViewController: SuperViewControllerSetting {
     
     @objc private func didTapRegistButton() {
         DispatchQueue.main.async {
+            //TODO: Coordinating
             self.navigationController?.pushViewController(ProductRegistViewController(), animated: true)
         }
     }
@@ -287,6 +290,8 @@ extension ProductListViewController: UICollectionViewDelegate {
         
         self.selectedIndexPath = indexPath
         productDetailViewController.receiveProductNumber(productNumber: productId)
+        //TODO: Coordinating
+
         navigationController?.pushViewController(productDetailViewController, animated: true)
     }
     

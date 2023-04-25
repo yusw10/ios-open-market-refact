@@ -8,6 +8,8 @@
 import UIKit
 
 final class ProductDetailViewController: SuperViewControllerSetting {
+    
+    weak var coordinator: Coordinator?
 
     //MARK: ProductDetailViewController NameSpace
 
@@ -129,7 +131,8 @@ final class ProductDetailViewController: SuperViewControllerSetting {
         registView.refreshList = {
             self.fetchProductDetailAction.value = ProductDetailViewModel.detailViewRefreshAction.refreshAction
         }
-        
+        //TODO: Coordinating
+
         navigationController?.pushViewController(registView, animated: true)
     }
     

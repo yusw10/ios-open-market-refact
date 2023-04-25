@@ -9,6 +9,8 @@ import UIKit
 
 final class ProductRegistViewController: SuperViewControllerSetting {
     
+    weak var coordinator: Coordinator?
+    
     //MARK: ProductRegistViewController NameSpace
     
     private enum ProductRegistViewControllerNameSpace {
