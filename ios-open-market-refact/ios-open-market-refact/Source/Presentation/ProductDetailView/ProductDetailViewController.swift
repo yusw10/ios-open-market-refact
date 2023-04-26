@@ -137,9 +137,9 @@ final class ProductDetailViewController: SuperViewControllerSetting {
         registView.refreshList = {
             self.fetchProductDetailAction.value = ProductDetailViewModel.detailViewRefreshAction.refreshAction
         }
-        //TODO: Coordinating
-
-        navigationController?.pushViewController(registView, animated: true)
+        //FIXME: Coordinating
+        coordinator?.registSubscription()
+        //navigationController?.pushViewController(registView, animated: true)
     }
     
     private func didTapDeleteButton() {
@@ -150,8 +150,9 @@ final class ProductDetailViewController: SuperViewControllerSetting {
         AlertDirector(viewController: self).createProductDeleteSuccessAlert(
             message: ProductDetailViewControllerNameSpace.deleteCompletionMessage
         ) { [weak self] _ in
-            //TODO: Coordinator
-            self?.navigationController?.popViewController(animated: true)
+            //FIXME: Coordinator
+            self?.coordinator?.didFinishDetailView()
+            //self?.navigationController?.popViewController(animated: true)
         }
     }
     

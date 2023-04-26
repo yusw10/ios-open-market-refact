@@ -149,7 +149,7 @@ extension MainViewController {
 extension MainViewController: MoreButtonTapDelegate {
     
     func moreButtonAddGesture() {
-        //TODO: Coordinating
+        
         //navigationController?.pushViewController(ProductListViewController(), animated: true)
         coordinator?.listSubscription()
     }
@@ -160,14 +160,14 @@ extension MainViewController: MoreButtonTapDelegate {
 extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let productDetailViewController = ProductDetailViewController()
+        //let productDetailViewController = ProductDetailViewController()
         
         guard let productId = dataSource?.itemIdentifier(for: indexPath)?.id else { return }
         
-        productDetailViewController.receiveProductNumber(productNumber: productId)
-        //TODO: Coordinating
+        //productDetailViewController.receiveProductNumber(productNumber: productId)
+        
         //navigationController?.pushViewController(productDetailViewController, animated: true)
-        coordinator?.detailSubscription()
+        coordinator?.detailSubscription(at: productId)
     }
 }
 

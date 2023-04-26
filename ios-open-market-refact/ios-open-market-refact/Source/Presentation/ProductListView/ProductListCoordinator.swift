@@ -10,7 +10,7 @@ import UIKit
 class ProductListCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
-    weak var parentCoordinator: MainCoordinator?
+    weak var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -25,5 +25,21 @@ class ProductListCoordinator: Coordinator {
     
     func didFinishListView() {
         parentCoordinator?.childDidFinish(self)
+    }
+}
+
+extension ProductListCoordinator: DetailCoordinating, RegistCoordinating {
+    func detailSubscription(at productId: Int) {
+        let child = ProductDetailCoordinator(navigationController: navigationController, productId: productId)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func registSubscription() {
+        let child = ProductRegistCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
     }
 }

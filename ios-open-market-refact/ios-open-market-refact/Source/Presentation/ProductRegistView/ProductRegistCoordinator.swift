@@ -10,7 +10,7 @@ import UIKit
 class ProductRegistCoordinator: Coordinator {
     
     var childCoordinators = [Coordinator]()
-    weak var parentCoordinator: MainCoordinator?
+    weak var parentCoordinator: Coordinator?
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {

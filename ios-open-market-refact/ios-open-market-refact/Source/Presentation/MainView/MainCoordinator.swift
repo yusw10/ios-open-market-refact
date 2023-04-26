@@ -30,9 +30,14 @@ class MainCoordinator: Coordinator {
             }
         }
     }
-    
-    func detailSubscription() {
-        let child = ProductDetailCoordinator(navigationController: navigationController)
+}
+
+extension MainCoordinator: ListCoordinating, DetailCoordinating {
+    func detailSubscription(at productId: Int) {
+        let child = ProductDetailCoordinator(
+            navigationController: navigationController,
+            productId: productId
+        )
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()

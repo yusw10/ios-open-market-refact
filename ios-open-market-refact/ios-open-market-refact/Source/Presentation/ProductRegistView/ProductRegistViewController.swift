@@ -311,8 +311,9 @@ final class ProductRegistViewController: SuperViewControllerSetting {
             if isAction {
                 DispatchQueue.main.async {
                     self.refreshList?()
-                    //TODO: Coordinator
-                    self.navigationController?.popViewController(animated: true)
+                    //FIXME: coordinator updated
+                    self.coordinator?.didFinishRegistView()
+                    //self.navigationController?.popViewController(animated: true)
                     
                     switch self.viewMode {
                     case .add:

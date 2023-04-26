@@ -153,9 +153,10 @@ final class ProductListViewController: SuperViewControllerSetting {
     }
     
     @objc private func didTapRegistButton() {
-        DispatchQueue.main.async {
-            //TODO: Coordinating
-            self.navigationController?.pushViewController(ProductRegistViewController(), animated: true)
+        DispatchQueue.main.async { [weak self] in
+            //FIXME: Coordinating
+            self?.coordinator?.registSubscription()
+            //self.navigationController?.pushViewController(ProductRegistViewController(), animated: true)
         }
     }
     
@@ -288,15 +289,16 @@ final class ProductListViewController: SuperViewControllerSetting {
 
 extension ProductListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let productDetailViewController = ProductDetailViewController()
+        //let productDetailViewController = ProductDetailViewController()
         
         guard let productId = dataSource?.itemIdentifier(for: indexPath)?.id else { return }
         
         self.selectedIndexPath = indexPath
-        productDetailViewController.receiveProductNumber(productNumber: productId)
+        //productDetailViewController.receiveProductNumber(productNumber: productId)
         
         //TODO: Coordinating
-        navigationController?.pushViewController(productDetailViewController, animated: true)
+        coordinator?.detailSubscription(at: productId)
+        //navigationController?.pushViewController(productDetailViewController, animated: true)
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
